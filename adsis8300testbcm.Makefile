@@ -35,23 +35,39 @@ include $(E3_REQUIRE_CONFIG)/DECOUPLE_FLAGS
 # one should look at other modules makefile to add more
 # In most case, one should ignore the following lines:
 
-#ifneq ($(strip $(ASYN_DEP_VERSION)),)
-#asyn_VERSION=$(ASYN_DEP_VERSION)
-#endif
+ifneq ($(strip $(ASYN_DEP_VERSION)),)
+asyn_VERSION=$(ASYN_DEP_VERSION)
+endif
 
-#ifneq ($(strip $(SEQUENCER_DEP_VERSION)),)
-#sequencer_VERSION=$(SEQUENCER_DEP_VERSION)
-#endif
+ifneq ($(strip $(ADCORE_DEP_VERSION)),)
+ADCore_VERSION=$(ADCORE_DEP_VERSION)
+endif
 
+ifneq ($(strip $(ADSUPPORT_DEP_VERSION)),)
+ADSupport_VERSION=$(ADSUPPORT_DEP_VERSION)
+endif
+
+ifneq ($(strip $(ADSIS8300TEST_DEP_VERSION)),)
+adsis8300test_VERSION=$(ADSIS8300TEST_DEP_VERSION)
+endif
 
 
 ## Exclude linux-ppc64e6500
-##EXCLUDE_ARCHS = linux-ppc64e6500
+EXCLUDE_ARCHS = linux-ppc64e6500
+
+APP:=sis8300bcmApp
+APPDB:=$(APP)/Db
+APPSRC:=$(APP)/src
 
 
-# APP:=calcApp
-# APPDB:=$(APP)/Db
-# APPSRC:=$(APP)/src
+USR_INCLUDES += -I$(where_am_I)$(APPSRC)
+
+
+HEADERS += $(APPSRC)/sis8300bcm.h
+SOURCES += $(APPSRC)/sis8300bcm.cpp
+DBDS    += $(APPSRC)/sis8300bcmSupport.dbd
+
+TEMPLATES += $(wildcard $(APPDB)/*.template)
 
 
 # USR_INCLUDES += -I$(where_am_I)$(APPSRC)
