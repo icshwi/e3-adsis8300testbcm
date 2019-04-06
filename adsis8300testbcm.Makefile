@@ -58,10 +58,13 @@ EXCLUDE_ARCHS = linux-ppc64e6500
 APP:=sis8300bcmApp
 APPDB:=$(APP)/Db
 APPSRC:=$(APP)/src
-
+LIBSRC:=vendor/ess/lib
 
 USR_INCLUDES += -I$(where_am_I)$(APPSRC)
+USR_INCLUDES += -I$(where_am_I)$(LIBSRC)
 
+HEADERS += $(LIBSRC)/sis8300drvbcm.h
+SOURCES += $(LIBSRC)/sis8300drvbcm.c
 
 HEADERS += $(APPSRC)/sis8300bcm.h
 SOURCES += $(APPSRC)/sis8300bcm.cpp

@@ -1,6 +1,6 @@
 #
 EPICS_MODULE_NAME:=adsis8300testbcm
-EPICS_MODULE_TAG:=master
+EPICS_MODULE_TAG:=support_fw_v2
 #
 E3_MODULE_VERSION:=develop
 
